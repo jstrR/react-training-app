@@ -1,14 +1,75 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.none {
+  display: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  background: rgba(152, 163, 180, 0.38);
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center
+}
+
+#root {
+  display: flex;
+  max-width: 60%;
+  min-width: 50%;
+  align-items: center;
+  flex-direction: column;
+}
+
+p {
+  margin: 0 0 5px;
+}
+
+.article {
+  background: #FFF;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+  width: 600px;
+  margin: 0 0 5px;
+  box-shadow: 2px 2px 5px -1px rgb(0, 81, 202);
+  padding: 3px 5px;
+}
+
+.news_author {
+  text-decoration: underline;
+  text-align: center;
+  color: #007DDC;
+}
+
+.news_count {
+  margin: 10px 0 0 0;
+  display: block;
+}
+
+.add {
+  margin: 10px 15px 15px 0;
+  max-width: 70%;
+  min-width: 60%;
+  border: 1px dashed rgba(0, 89, 181, 0.82);
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.add_author, .add_text, .add_btn, .add_checkrule {
+  display: block;
+  margin: 5px 0 10px 0;
+  padding: 10px 5px;
+  width: 94%;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+}
+.add_checkrule {
+  border: none;
+  font-size: 12px;
+}
+.add_btn {
+  box-sizing: content-box;
+  color: #FFF;
+  text-transform: uppercase;
+  background: #007DDC;
+}
+.add_btn:disabled {
+  background: #CCC;
+  color: #999;
 }

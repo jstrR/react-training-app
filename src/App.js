@@ -1,27 +1,53 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Comments } from './components/Comments';
+import { Add } from './components/Add';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+class App extends React.Component {
+
+  state = {
+    commentsStack: JSON.parse(localStorage.getItem("commentsData")),
+    isLoading: false
+  }
+
+  componentWillMount() {
+    console.log(this.state.commentsStack)
+    const {commentsStack} = this.state
+    if(!commentsStack){
+      this.setState({commentsStack: []})
+    } 
+
+    /*download comments from server
+    this.setState({ isLoading: true })
+    fetch('http://localhost:3000/data/commentsData.json')
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log('server data is loaded')
+        this.setState({ isLoading: false, comments: data })
+      })*/
+  }
+  
+  
+  handleAddcomments = data => {
+    console.log(data)
+    let {commentsStack} = this.state
+    let newComment = [...commentsStack, data]
+    localStorage.setItem("commentsData", JSON.stringify(newComment))
+    this.setState({ commentsStack: JSON.parse(localStorage.getItem("commentsData")) })    
+  }
+
+  render(){
+    const { commentsStack, isLoading } = this.state
+    console.log(commentsStack)
+    return(
+      <React.Fragment>
+        <h3>Comments</h3>
+        {isLoading && <p>Загружаю...</p>}
+        <Comments data={commentsStack} />
+        <Add onAddComments = {this.handleAddcomments}/>
+      </React.Fragment>
+      )
   }
 }
 
